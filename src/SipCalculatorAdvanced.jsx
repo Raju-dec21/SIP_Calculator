@@ -36,22 +36,56 @@ const SipCalculatorAdvanced = () => {
 
   return (
     <div className="flex flex-col md:flex-row justify-center p-6 gap-6 border">
+      {/* Pie Chart Section */}
+      <div className="w-2/3 md:w-1/2 flex justify-center items-center order-last md:order-first">
+        <ResponsiveContainer width="100%" height={300}>
+          <PieChart>
+            <Pie
+              data={data}
+              dataKey="value"
+              nameKey="name"
+              cx="50%"
+              cy="50%"
+              outerRadius={100}
+            >
+              <Cell fill={'#4CAF50'} />
+              <Cell fill={'#FFC107'} />
+            </Pie>
+            <Tooltip formatter={(value) => `₹${value.toLocaleString()}`} />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+
       {/* Inputs Section */}
       <div className="w-2/3 md:w-1/2 bg-white p-6 shadow rounded-xl">
         <div className="flex gap-4 mb-4 m-4">
           <button
             onClick={() => setTab('sip')}
-            className={`px-4 py-2 rounded-lg ${
-              tab === 'sip' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-            }`}
+            style={{
+              padding: '0.5rem 1rem',
+              borderRadius: '0.5rem',
+              backgroundColor: tab === 'sip' ? '#3B82F6' : '#E5E7EB',
+              color: tab === 'sip' ? 'white' : '#374151',
+              fontWeight: tab === 'sip' ? '600' : '400',
+              border: 'none',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}
           >
             SIP
           </button>
           <button
             onClick={() => setTab('lumpsum')}
-            className={`px-4 py-2 rounded-lg ${
-              tab === 'lumpsum' ? 'bg-blue-500 text-white' : 'bg-gray-200'
-            }`}
+            style={{
+              padding: '0.5rem 1rem',
+              borderRadius: '0.5rem',
+              backgroundColor: tab === 'lumpsum' ? '#3B82F6' : '#E5E7EB',
+              color: tab === 'lumpsum' ? 'white' : '#374151',
+              fontWeight: tab === 'lumpsum' ? '600' : '400',
+              border: 'none',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease'
+            }}
           >
             Lumpsum
           </button>
@@ -102,26 +136,6 @@ const SipCalculatorAdvanced = () => {
             🏁 <strong>Total Value:</strong> ₹{futureValue.toLocaleString()}
           </p>
         </div>
-      </div>
-
-      {/* Pie Chart Section */}
-      <div className="w-2/3 md:w-1/2 flex justify-center items-center">
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie
-              data={data}
-              dataKey="value"
-              nameKey="name"
-              cx="50%"
-              cy="50%"
-              outerRadius={100}
-            >
-              <Cell fill={'#4CAF50'} />
-              <Cell fill={'#FFC107'} />
-            </Pie>
-            <Tooltip formatter={(value) => `₹${value.toLocaleString()}`} />
-          </PieChart>
-        </ResponsiveContainer>
       </div>
     </div>
   );
